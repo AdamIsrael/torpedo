@@ -1,0 +1,30 @@
+
+default:
+    @just --list
+
+
+build-debug:
+    cargo build
+
+build-release:
+    cargo build --release
+
+install-debug: build-debug
+    #!/bin/bash
+    set -eu
+    plugins=$(find target/debug -maxdepth 1 -name '*.so')
+    mkdir -p ~/.local/lib/torpedo/plugins/
+    for plugin in $plugins; do
+        echo "Installing $plugin to ~/.local/lib/torpedo/plugins/"
+        cp $plugin ~/.local/lib/torpedo/plugins/
+    done
+
+install-release: build-release
+    #!/bin/bash
+    set -eu
+    plugins=$(find target/release -maxdepth 1 -name '*.so')
+    mkdir -p ~/.local/lib/torpedo/plugins/
+    for plugin in $plugins; do
+        echo "Installing $plugin to ~/.local/lib/torpedo/plugins/"
+        cp $plugin ~/.local/lib/torpedo/plugins/
+    done
