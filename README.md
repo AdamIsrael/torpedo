@@ -55,3 +55,4 @@ To fix this, we would need to use a different approach, extracting pointers to f
 
 - [x] Fix or suppress `not FFI-safe` warning when building plugins.
 - [x] Implement a callback that the plugin can use to communicate with `torpedo`.
+- [ ] Make plugin FFI-safe so it can be written in any language.
